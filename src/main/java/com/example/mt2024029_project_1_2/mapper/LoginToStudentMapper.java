@@ -34,7 +34,7 @@ public class LoginToStudentMapper {
                 .firstName("NEW")
                 .lastName("NEW")
                 .cgpa(8.8)
-                .email("new.gmail.com")
+                .email("new@gmail.com")
                 .domain(defaultDomain)
                 .specialization(defaultSpecialization)
                 .placement(defaultPlacement)
