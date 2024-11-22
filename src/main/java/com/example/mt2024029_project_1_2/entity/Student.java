@@ -1,5 +1,6 @@
 package com.example.mt2024029_project_1_2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,5 +51,6 @@ public class Student {
     @JoinColumn(name = "placement_id")
     private Placement placement;
 
+    @JsonIgnore
     private String password;
 }
