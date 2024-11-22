@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "specialization")
 @Data
@@ -31,8 +29,4 @@ public class Specialization {
     private int years;
 
     private int creditsRequired;
-
-    // One-to-many relationship with Student
-    @OneToMany(mappedBy = "specialization", fetch = FetchType.LAZY)
-    private List<Student> students;
 }

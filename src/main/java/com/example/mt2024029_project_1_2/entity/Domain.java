@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "domains")
 @Data
@@ -29,7 +27,4 @@ public class Domain {
     private int capacity;
 
     private String qualification;
-
-    @OneToMany(mappedBy = "domain", fetch = FetchType.LAZY)
-    private List<Student> students;
 }

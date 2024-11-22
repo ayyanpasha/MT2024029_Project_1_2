@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "placement")
 @Data
@@ -31,8 +29,4 @@ public class Placement {
     private int intake;
 
     private double minimumGrade;
-
-    // One-to-many relationship with Student
-    @OneToMany(mappedBy = "placement", fetch = FetchType.LAZY)
-    private List<Student> students;
 }
