@@ -5,6 +5,7 @@ import com.example.mt2024029_project_1_2.dto.ModifyStudentDetail;
 import com.example.mt2024029_project_1_2.entity.Student;
 import com.example.mt2024029_project_1_2.service.StudentService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class StudentController {
     }
 
     @PostMapping("/password")
-    public ResponseEntity<String> changePassword(@RequestBody ChangePassword changePassword, HttpServletRequest httpRequest){
+    public ResponseEntity<String> changePassword(@RequestBody @Valid ChangePassword changePassword, HttpServletRequest httpRequest){
         return studentService.changePassword(changePassword, httpRequest);
     }
 }

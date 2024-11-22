@@ -17,14 +17,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Service
 public class StudentService {
 
     @Autowired
     private JWTService jwtService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -125,9 +128,28 @@ public class StudentService {
         return ResponseEntity.ok("Student details updated successfully");
     }
 
-    @PostMapping("/password")
     public ResponseEntity<String> changePassword(ChangePassword changePassword, HttpServletRequest httpRequest) {
         String rollNumber = getRollNumber(httpRequest);
+
+        if (rollNumber == null) {
+            return ResponseEntity.status(404).body("Student not found");
+        }
+
+        Student student = studentRepository.findByRollNumber(rollNumber);
+        if (student == null) {
+            return ResponseEntity.status(404).body("Student not found");
+        }
+
+        if (!passwordEncoder.matches(changePassword.getOldPassword(), student.getPassword())) {
+            return ResponseEntity.status(400).body("Old password is incorrect");
+        }
+
+        String newPassword = changePassword.getNewPassword();
+
+        String encodedNewPassword = passwordEncoder.encode(newPassword);
+
+        student.setPassword(encodedNewPassword);
+        studentRepository.save(student);
 
         return ResponseEntity.ok("Password updated successfully");
     }
