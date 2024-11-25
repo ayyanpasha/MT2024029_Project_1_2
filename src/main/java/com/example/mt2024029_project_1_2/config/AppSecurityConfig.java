@@ -17,10 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class AppSecurityConfig {
+public class AppSecurityConfig implements WebMvcConfigurer {
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -41,6 +43,16 @@ public class AppSecurityConfig {
         return provider;
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        // Allow CORS for all endpoints (/**), you can customize as needed
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000")  // Allow your frontend domain
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")  // Specify allowed methods
+                .allowedHeaders("*")  // Allow all headers
+                .allowCredentials(true);  // Allow cookies or authentication data
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
@@ -52,6 +64,7 @@ public class AppSecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors(Customizer.withDefaults())
                 .build();
     }
 

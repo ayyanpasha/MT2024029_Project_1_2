@@ -9,12 +9,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 public class StudentController {
 
@@ -28,6 +26,7 @@ public class StudentController {
 
     @PostMapping("/detail")
     public ResponseEntity<String> modifyDetails(@RequestBody ModifyStudentDetail modifyStudentDetail, HttpServletRequest httpRequest){
+        System.out.println("THIS IS POST METHOD");
         return studentService.modify(modifyStudentDetail, httpRequest);
     }
 

@@ -73,6 +73,9 @@ public class StudentService {
             return ResponseEntity.notFound().build();  // If student not found, return 404.
         }
 
+        if (modifyStudentDetail.getRollNumber() != null) {
+            student.setRollNumber(modifyStudentDetail.getRollNumber());
+        }
         if (modifyStudentDetail.getFirstName() != null) {
             student.setFirstName(modifyStudentDetail.getFirstName());
         }

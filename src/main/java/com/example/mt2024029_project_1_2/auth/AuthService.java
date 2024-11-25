@@ -1,9 +1,11 @@
 package com.example.mt2024029_project_1_2.auth;
 
 import com.example.mt2024029_project_1_2.dto.LoginRequest;
-import com.example.mt2024029_project_1_2.mapper.LoginToStudentMapper;
+import com.example.mt2024029_project_1_2.dto.SignupRequest;
+import com.example.mt2024029_project_1_2.mapper.SignupToStudentMapper;
 import com.example.mt2024029_project_1_2.repository.StudentRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +29,7 @@ public class AuthService {
     private StudentRepository studentRepository;
 
     @Autowired
-    private LoginToStudentMapper loginToStudentMapper;
+    private SignupToStudentMapper signupToStudentMapper;
 
     public String verify(LoginRequest loginRequest) {
         Authentication authentication =
@@ -39,12 +41,12 @@ public class AuthService {
     }
 
     @Transactional
-    public String signup(LoginRequest student) {
+    public String signup(@Valid SignupRequest student) {
         String encodedPassword = passwordEncoder.encode(student.getPassword());
 
         student.setPassword(encodedPassword);
 
-        studentRepository.save(loginToStudentMapper.toEntity(student));
+        studentRepository.save(signupToStudentMapper.toEntity(student));
 
         return jwtService.generateToken(student.getUsername());
     }

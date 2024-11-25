@@ -33,8 +33,8 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = authHeader != null && authHeader.startsWith("Bearer ") ? authHeader.substring(7) : null;
         String username = (token != null) ? jwtService.extractUserName(token):null;
         System.out.println("USERNAME");
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
+        System.out.println(authHeader);
+        if(username != null) {
             System.out.println(username);
             UserDetails userDetails = applicationContext.getBean(StudentService.class).loadUserByUsername(username);
             if(jwtService.validateToken(token, userDetails)){
