@@ -32,6 +32,7 @@ public class StudentController {
 
     @PostMapping("/password")
     public ResponseEntity<String> changePassword(@RequestBody @Valid ChangePassword changePassword, HttpServletRequest httpRequest){
+        System.out.println("THIS IS POST METHOD FOR PASSWORD");
         return studentService.changePassword(changePassword, httpRequest);
     }
 }

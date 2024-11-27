@@ -21,8 +21,5 @@ public class ChangePassword {
 
     @NotNull(message = "Old password cannot be null")
     @NotEmpty(message = "Old password cannot be empty")
-    @Size(min = 8, max = 20, message = "Old password must be between 8 and 20 characters")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).*$",
-            message = "Old password must contain at least one uppercase letter, one number, and one special character")
     private String newPassword;
 }
