@@ -85,45 +85,45 @@ public class StudentService {
         if (modifyStudentDetail.getEmail() != null) {
             student.setEmail(modifyStudentDetail.getEmail());
         }
-        if (modifyStudentDetail.getPhotographPath() != null) {
-            student.setPhotographPath(modifyStudentDetail.getPhotographPath());
-        }
-        if (modifyStudentDetail.getCgpa() != null) {
-            student.setCgpa(modifyStudentDetail.getCgpa());
-        }
-        if (modifyStudentDetail.getTotalCredits() != null) {
-            student.setTotalCredits(modifyStudentDetail.getTotalCredits());
-        }
-        if (modifyStudentDetail.getGraduationYear() != null) {
-            student.setGraduationYear(modifyStudentDetail.getGraduationYear());
-        }
+//        if (modifyStudentDetail.getPhotographPath() != null) {
+//            student.setPhotographPath(modifyStudentDetail.getPhotographPath());
+//        }
+//        if (modifyStudentDetail.getCgpa() != null) {
+//            student.setCgpa(modifyStudentDetail.getCgpa());
+//        }
+//        if (modifyStudentDetail.getTotalCredits() != null) {
+//            student.setTotalCredits(modifyStudentDetail.getTotalCredits());
+//        }
+//        if (modifyStudentDetail.getGraduationYear() != null) {
+//            student.setGraduationYear(modifyStudentDetail.getGraduationYear());
+//        }
 
-        if (modifyStudentDetail.getDomainId() != null) {
-            Domain domain = domainRepository.findById(modifyStudentDetail.getDomainId()).orElse(null);
-            if (domain != null) {
-                student.setDomain(domain);
-            } else {
-                return ResponseEntity.badRequest().body("Invalid Domain ID");
-            }
-        }
+//        if (modifyStudentDetail.getDomainId() != null) {
+//            Domain domain = domainRepository.findById(modifyStudentDetail.getDomainId()).orElse(null);
+//            if (domain != null) {
+//                student.setDomain(domain);
+//            } else {
+//                return ResponseEntity.badRequest().body("Invalid Domain ID");
+//            }
+//        }
+//
+//        if (modifyStudentDetail.getSpecializationId() != null) {
+//            Specialization specialization = specializationRepository.findById(modifyStudentDetail.getSpecializationId()).orElse(null);
+//            if (specialization != null) {
+//                student.setSpecialization(specialization);
+//            } else {
+//                return ResponseEntity.badRequest().body("Invalid Specialization ID");
+//            }
+//        }
 
-        if (modifyStudentDetail.getSpecializationId() != null) {
-            Specialization specialization = specializationRepository.findById(modifyStudentDetail.getSpecializationId()).orElse(null);
-            if (specialization != null) {
-                student.setSpecialization(specialization);
-            } else {
-                return ResponseEntity.badRequest().body("Invalid Specialization ID");
-            }
-        }
-
-        if (modifyStudentDetail.getPlacementId() != null) {
-            Placement placement = placementRepository.findById(modifyStudentDetail.getPlacementId()).orElse(null);
-            if (placement != null) {
-                student.setPlacement(placement);
-            } else {
-                return ResponseEntity.badRequest().body("Invalid Placement ID");
-            }
-        }
+//        if (modifyStudentDetail.getPlacementId() != null) {
+//            Placement placement = placementRepository.findById(modifyStudentDetail.getPlacementId()).orElse(null);
+//            if (placement != null) {
+//                student.setPlacement(placement);
+//            } else {
+//                return ResponseEntity.badRequest().body("Invalid Placement ID");
+//            }
+//        }
 
         System.out.println(student);
         studentRepository.save(student);

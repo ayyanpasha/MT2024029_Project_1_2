@@ -39,6 +39,7 @@ public class SignupToStudentMapper {
                 .specialization(defaultSpecialization)
                 .placement(defaultPlacement)
                 .graduationYear(2026)
+                .roleUser("user")
                 .photographPath("/image/"+request.getUsername()+".jpg")
                 .totalCredits(0)
                 .build();

@@ -39,6 +39,8 @@ public class Student {
 
     private int graduationYear;
 
+    private String roleUser;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "domain_id")
     private Domain domain;
