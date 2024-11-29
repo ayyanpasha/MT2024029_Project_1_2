@@ -19,6 +19,7 @@ public class StudentController {
     @Autowired
     private final StudentService studentService;
 
+
     @GetMapping("/detail")
     public ResponseEntity<Student> getDetails(HttpServletRequest httpRequest){
         return studentService.getDetails(httpRequest);
@@ -26,13 +27,12 @@ public class StudentController {
 
     @PostMapping("/detail")
     public ResponseEntity<String> modifyDetails(@RequestBody ModifyStudentDetail modifyStudentDetail, HttpServletRequest httpRequest){
-        System.out.println("THIS IS POST METHOD");
         return studentService.modify(modifyStudentDetail, httpRequest);
     }
 
     @PostMapping("/password")
     public ResponseEntity<String> changePassword(@RequestBody @Valid ChangePassword changePassword, HttpServletRequest httpRequest){
-        System.out.println("THIS IS POST METHOD FOR PASSWORD");
         return studentService.changePassword(changePassword, httpRequest);
     }
+
 }
